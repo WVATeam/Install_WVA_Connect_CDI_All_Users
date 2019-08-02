@@ -1,0 +1,9 @@
+﻿<Application x:Class="Install_WVA_Connect_CDI_All_Users.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Install_WVA_Connect_CDI_All_Users"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
