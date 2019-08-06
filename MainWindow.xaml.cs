@@ -1,8 +1,12 @@
-﻿using System;
+﻿using IWshRuntimeLibrary;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -59,15 +63,6 @@ namespace Install_WVA_Connect_CDI_All_Users
             return directory.ToLower().Replace(@"c:\users\", "").Replace(@"\", "");
         }
 
-        private bool SetupExeExists()
-        {
-            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            if (File.Exists($@"{desktop}\Setup.exe"))
-                return true;
-            else
-                return false;
-        }
-
         private bool AppInstalled()
         {
             string appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -78,18 +73,41 @@ namespace Install_WVA_Connect_CDI_All_Users
                 return false;
         }
 
-        private void RunSetupExe()
+        private void CreateIconOnDesktop(string userName)
         {
-
-
+            object shDesktop = (object)"Desktop";
+            WshShell shell = new WshShell();
+            string shortcutAddress = $@"C:\Users\{userName}\desktop\WVA_Connect_CDI.lnk";
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+            shortcut.Description = "WVA Connect CDI";
+            shortcut.TargetPath = $@"C:\Users\{userName}\AppData\Local\WVA_Connect_CDI\WVA_Connect_CDI.exe";
+            shortcut.Save();
         }
 
-        private void Install(string user)
+        private bool Install(string user)
         {
-            string path = $@"C:\Users\{user}\AppData\Local\";
+            string appDataLocal = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string originDirectory = $@"{appDataLocal}\WVA_Connect_CDI";
+            string newCopyPath = $@"C:\Users\{user}\AppData\Local\WVA_Connect_CDI";
 
+            // Copy all child files and directories 
+            var process = new Process();
+            var startInfo = new ProcessStartInfo
+            {
+                WindowStyle = ProcessWindowStyle.Hidden,
+                FileName = "xcopy.exe",
+                Arguments = $"\"{originDirectory}\" \"{newCopyPath}\" /E /I /Y",
+                Verb = "runas"
+            };
+            process.StartInfo = startInfo;
+            process.Start();
 
+            Thread.Sleep(500);
 
+            if (Directory.Exists(newCopyPath))
+                return true;
+            else
+                return false;
         }
 
         private void AvailableUsersTable_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
@@ -99,33 +117,67 @@ namespace Install_WVA_Connect_CDI_All_Users
 
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
-            if (SetupExeExists())
+            try
             {
-                RunSetupExe();
                 if (AppInstalled())
                 {
+                    int installedCount = 0;
                     foreach (AvailableUser user in AvailableUsersTable.Items)
                     {
                         if (user.IsChecked)
                         {
-                            Install(user.UserName);
+                            try
+                            {
+                                bool wasInstalled = Install(user.UserName);
+                                CreateIconOnDesktop(user.UserName);
+
+                                if (wasInstalled)
+                                    installedCount++;
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show($"Install failed for user: {user.UserName}!", "", MessageBoxButton.OK);
+                            }
                         }
                     }
+
+                    if (installedCount == 1)
+                        MessageBox.Show($"{installedCount} app successfully installed!", "", MessageBoxButton.OK);
+                    else
+                        MessageBox.Show($"{installedCount} apps successfully installed!", "", MessageBoxButton.OK);
                 }
                 else
                 {
-                    MessageBox.Show("App was not installed in AppData.", "", MessageBoxButton.OK);
+                    MessageBox.Show("You must have WVA_Connect_CDI installed before continuing!", "", MessageBoxButton.OK);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Setup.exe not found on desktop! Please place Setup.exe on your desktop and try again.", "", MessageBoxButton.OK);
+                MessageBox.Show($"The following exception has occurred: {ex.ToString()}", "", MessageBoxButton.OK);
             }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void SelectAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (AvailableUser user in AvailableUsersTable.Items)
+                if (!user.IsChecked)
+                    user.IsChecked = true;
+
+            AvailableUsersTable.Items.Refresh();
+        }
+
+        private void DeselectAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (AvailableUser user in AvailableUsersTable.Items)
+                if (user.IsChecked)
+                    user.IsChecked = false;
+
+            AvailableUsersTable.Items.Refresh();
         }
     }
 
