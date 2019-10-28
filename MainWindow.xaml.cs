@@ -101,8 +101,28 @@ namespace Install_WVA_Connect_CDI_All_Users
             };
             process.StartInfo = startInfo;
             process.Start();
+            process.WaitForExit();
 
-            Thread.Sleep(500);
+            // Delete files that are user specific
+            // Delete selected act number set by user. If this is set, they won't be prompted to select an account upon startup
+            System.IO.File.Delete(newCopyPath + @"\ActNum\ActNum.txt");
+
+            // Delete copied error files
+            var errorLogFiles = Directory.EnumerateFiles(newCopyPath + @"\ErrorLog\");
+            foreach (string file in errorLogFiles)
+            {
+                try { System.IO.File.Delete(file); } catch { }
+            }
+
+            // Delete copied temp files
+            var tempFiles = Directory.EnumerateFiles(newCopyPath + @"\Temp\");
+            foreach (string file in tempFiles)
+            {
+                try { System.IO.File.Delete(file); } catch { }
+            }
+
+            // Wait a half second to allow the files to be created through command line
+            //hread.Sleep(500);
 
             if (Directory.Exists(newCopyPath))
                 return true;

@@ -30,3 +30,20 @@ C:\Users\evan\Desktop\Repos\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_
 C:\Users\evan\Desktop\Repos\Install_WVA_Connect_CDI_All_Users\obj\Debug\Interop.IWshRuntimeLibrary.dll
 C:\Users\evan\Desktop\Repos\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.csproj.ResolveComReference.cache
 C:\Users\evan\Desktop\Repos\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.csprojAssemblyReference.cache
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\bin\Debug\Install_WVA_Connect_CDI_All_Users.exe.config
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\bin\Debug\Install_WVA_Connect_CDI_All_Users.exe
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\bin\Debug\Install_WVA_Connect_CDI_All_Users.pdb
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.csprojAssemblyReference.cache
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.csproj.ResolveComReference.cache
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\MainWindow.g.cs
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\App.g.cs
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users_MarkupCompile.cache
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users_MarkupCompile.lref
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\MainWindow.baml
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.g.resources
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.Properties.Resources.resources
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.csproj.GenerateResource.cache
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.csproj.CoreCompileInputs.cache
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.exe
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\Install_WVA_Connect_CDI_All_Users\obj\Debug\Install_WVA_Connect_CDI_All_Users.pdb
